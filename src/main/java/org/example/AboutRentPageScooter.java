@@ -58,12 +58,12 @@ public class AboutRentPageScooter {
         driver.findElement(blackPearlCheckbox).click();
     }
 
-    // Метод для нажатия на чекбокс "чёрный жемчуг"
+    // Метод для нажатия на чекбокс "серая безысходность"
     public void clickGreyPearlCheckbox() {
         driver.findElement(greyPearlCheckbox).click();
     }
     // Метод для ввода комментария в поле "Комментарий для курьера"
-    public void setCommentForСourier(String userComment) {
+    public void setCommentForCourier(String userComment) {
         driver.findElement(commentForСourier).sendKeys(userComment);
     }
     // Метод для нажатия на кнопку "заказать" после ввода всех данных
@@ -79,20 +79,19 @@ public class AboutRentPageScooter {
         return driver.findElement(orderCompleted).getText();
     }
 
+    public void fillFormOnSecondPage(String userComment) {
+
+        clickDeliveryDateButton();
+        clickDecemberFirstDateButton();
+        clickRentalPeriodField();
+        clickRentalPeriodFiveDays();
+        clickBlackPearlCheckbox();
+        setCommentForCourier(userComment);
+        clickOrderButton();
+        clickOrderYesButton();
+
+    }
+
 }
 
 
-// Пробные варианты по вводу даты доставки:
-//
-// Публичный метод для подставки текста в поле "Когда привезти самокат"
-//  public void selectDeliveryDate(String userDeliveryDate) {
-//       driver.findElement(deliveryDate).sendKeys(userDeliveryDate);
-//      selectDeliveryDateFromOptions(userDeliveryDate);
-//  }
-// Приватный метод для того, чтоб выбрать дату из выпадающего календаря и кликнуть по ней, чтоб она подставилась в поле выше
-//  private void selectDeliveryDateFromOptions(String userDeliveryDate) {
-//      String deliveryDateOptionTemplate = ".//div[@class='select-search__select']//*[text()='%s']";
-//      By delDate = By.xpath(String.format(deliveryDateOptionTemplate, userDeliveryDate));
-//найти элемент по этому селектору и кликнуть по нему
-//      driver.findElement(delDate).click();
-//    }

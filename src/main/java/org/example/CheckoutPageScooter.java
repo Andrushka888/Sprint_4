@@ -61,6 +61,16 @@ public class CheckoutPageScooter {
         driver.findElement(nextButton).click();
     }
 
+    public void fillFormOnFirstPage(String userFirstName, String userSecondName, String userAddress, String userMetro, String userPhone) {
+
+        setFirstName(userFirstName);
+        setSecondName(userSecondName);
+        setAddress(userAddress);
+        selectMetro(userMetro);
+        setPhone(userPhone);
+
+    }
+
 
 }
 
