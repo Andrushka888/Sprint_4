@@ -1,13 +1,11 @@
 package org.example;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
 public class AboutRentPageScooter {
 
     private WebDriver driver;
-
     // Локатор до поля "Когда привезти самокат"
     private By deliveryDate = (By.cssSelector("input[placeholder='* Когда привезти самокат']"));
     // Локатор до кнопки "1 декабря"
@@ -30,12 +28,9 @@ public class AboutRentPageScooter {
     private By orderNoButton = By.xpath(".//div[@class='Order_Buttons__1xGrp']/button[text()='Нет']");
     //Локатор до текста "Заказ оформлен"
     private By orderCompleted = By.xpath(".//div[text()='Заказ оформлен']");
-
-
     public AboutRentPageScooter(WebDriver driver) {
         this.driver = driver;
     }
-
     // Метод для нажатия на поле "Когда привезти самокат"
     public void clickDeliveryDateButton() {
         driver.findElement(deliveryDate).click();
@@ -52,12 +47,10 @@ public class AboutRentPageScooter {
     public void clickRentalPeriodFiveDays() {
         driver.findElement(rentalPeriodFiveDays).click();
     }
-
     // Метод для нажатия на чекбокс "чёрный жемчуг"
     public void clickBlackPearlCheckbox() {
         driver.findElement(blackPearlCheckbox).click();
     }
-
     // Метод для нажатия на чекбокс "серая безысходность"
     public void clickGreyPearlCheckbox() {
         driver.findElement(greyPearlCheckbox).click();
@@ -78,9 +71,7 @@ public class AboutRentPageScooter {
     public String getOrderCompletedConfirmation() {
         return driver.findElement(orderCompleted).getText();
     }
-
     public void fillFormOnSecondPage(String userComment) {
-
         clickDeliveryDateButton();
         clickDecemberFirstDateButton();
         clickRentalPeriodField();
@@ -89,9 +80,7 @@ public class AboutRentPageScooter {
         setCommentForCourier(userComment);
         clickOrderButton();
         clickOrderYesButton();
-
     }
-
 }
 
 

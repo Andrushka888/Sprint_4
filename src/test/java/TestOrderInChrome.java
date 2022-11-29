@@ -7,25 +7,22 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
 public class TestOrderInChrome {
 
-    private final By orderButton; // Переменная для пути к кнопкам "Заказать"
-    private final String userFirstName; // = "Тест"
-    private final String userSecondName; // = "Тест"
-    private final String userAddress; // = "ул.Тест, д.1"
-    private final String userMetro; // = "Черкизовская"
-    private final String userPhone; //  = "88005553535"
-    private final String userComment; // = "Тест";
-    private final String expectedConfirmationText; // = "Заказ оформлен";
-
+    private final By orderButton;
+    private final String userFirstName;
+    private final String userSecondName;
+    private final String userAddress;
+    private final String userMetro;
+    private final String userPhone;
+    private final String userComment;
+    private final String expectedConfirmationText;
     public TestOrderInChrome(By orderButton, String userFirstName, String userSecondName, String userAddress, String userMetro, String userPhone, String userComment, String expectedConfirmationText) {
         this.orderButton = orderButton;
         this.userFirstName = userFirstName;
@@ -45,9 +42,7 @@ public class TestOrderInChrome {
         };
     }
 
-
     private WebDriver driver;
-
     @Before
     public void preparatoryDataForTestOrder() {
 
@@ -55,73 +50,24 @@ public class TestOrderInChrome {
         driver.get("https://qa-scooter.praktikum-services.ru/");
 
     }
-
         @Test
         public void checkClickOrderAnyButtonAndFillOrderAndCheckSuccessfulOrderWindowInChrome() {
 
             MainPageScooter objMainPage = new MainPageScooter(driver);
             CheckoutPageScooter objCheckoutPage = new CheckoutPageScooter(driver);
             AboutRentPageScooter objAboutRentPage = new AboutRentPageScooter(driver);
-
-
             objMainPage.clickCookieButton();
             objMainPage.clickOrderButtonAnyone(orderButton);
             objCheckoutPage.fillFormOnFirstPage(userFirstName, userSecondName, userAddress, userMetro, userPhone);
             objCheckoutPage.clickNextButton();
-
             objAboutRentPage.fillFormOnSecondPage(userComment);
-
             String actualConfirmationText = objAboutRentPage.getOrderCompletedConfirmation();
-
             assertEquals("Должен вернуться текст подтверждения заказа", actualConfirmationText, expectedConfirmationText);
-
         }
-
 
    @After
         public void teardown() {
             // Закрыть браузер
-
            driver.quit();
        }
     }
-
-//         public void checkClickOrderUpButtonAndFillOrderAndCheckSuccessfulOrderWindowInChrome() {
-//
-//            MainPageScooter objMainPage = new MainPageScooter(driver);
-//            CheckoutPageScooter objCheckoutPage = new CheckoutPageScooter(driver);
-//            AboutRentPageScooter objAboutRentPage = new AboutRentPageScooter(driver);
-//
-//
-//            objMainPage.clickCookieButton();
-//            objMainPage.clickOrderButtonTop();
-//            objCheckoutPage.fillFormOnFirstPage(userFirstName, userSecondName, userAddress, userMetro, userPhone);
-//            objCheckoutPage.clickNextButton();
-//
-//            objAboutRentPage.fillFormOnSecondPage(userComment);
-//
-//            String actualConfirmationText = objAboutRentPage.getOrderCompletedConfirmation();
-//
-//            assertEquals("Должен вернуться текст подтверждения заказа", actualConfirmationText, expectedConfirmationText);
-//
-//        }
-
-//        public void checkClickOrderLowerButtonAndFillOrderAndCheckSuccessfulOrderWindowInChrome() {
-//
-//            MainPageScooter objMainPage = new MainPageScooter(driver);
-//            CheckoutPageScooter objCheckoutPage = new CheckoutPageScooter(driver);
-//            AboutRentPageScooter objAboutRentPage = new AboutRentPageScooter(driver);
-//
-//
-//            objMainPage.clickCookieButton();
-//            objMainPage.clickOrderButtonLower();
-//            objCheckoutPage.fillFormOnFirstPage(userFirstName, userSecondName, userAddress, userMetro, userPhone);
-//            objCheckoutPage.clickNextButton();
-//
-//            objAboutRentPage.fillFormOnSecondPage(userComment);
-//
-//            String actualConfirmationText = objAboutRentPage.getOrderCompletedConfirmation();
-//
-//            assertEquals("Должен вернуться текст подтверждения заказа", actualConfirmationText, expectedConfirmationText);
-//
-//        }

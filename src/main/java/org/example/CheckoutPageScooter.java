@@ -1,11 +1,9 @@
 package org.example;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
 public class CheckoutPageScooter {
-
     private WebDriver driver;
     // Локатор до поля "Имя"
     private By firstName = (By.cssSelector("input[placeholder='* Имя']"));
@@ -19,26 +17,21 @@ public class CheckoutPageScooter {
     private By phone = (By.cssSelector("input[placeholder='* Телефон: на него позвонит курьер']"));
     // Локатор для кнопки "Далее"
     private By nextButton = By.className("Button_Middle__1CSJM");
-
     public CheckoutPageScooter(WebDriver driver) {
         this.driver = driver;
     }
-
     // Метод для ввода текста в поле "Имя"
     public void setFirstName(String userFirstName) {
         driver.findElement(firstName).sendKeys(userFirstName);
     }
-
     // Метод для ввода текста в поле "Фамилия"
     public void setSecondName(String userSecondName) {
         driver.findElement(secondName).sendKeys(userSecondName);
     }
-
     // Метод для ввода текста в поле "Адрес: куда привезти заказ"
     public void setAddress(String userAddress) {
         driver.findElement(address).sendKeys(userAddress);
     }
-
 // Публичный метод для подставки текста в поле "Станция метро"
     public void selectMetro(String userMetro) {
         driver.findElement(metroStation).sendKeys(userMetro);
@@ -51,7 +44,6 @@ public class CheckoutPageScooter {
         //найти элемент по этому селектору и кликнуть по нему
         driver.findElement(metro).click();
     }
-
     // Метод для ввода текста в поле "Телефон: на него позвонит курьер"
     public void setPhone(String userPhone) {
         driver.findElement(phone).sendKeys(userPhone);
@@ -60,18 +52,13 @@ public class CheckoutPageScooter {
     public void clickNextButton() {
         driver.findElement(nextButton).click();
     }
-
     public void fillFormOnFirstPage(String userFirstName, String userSecondName, String userAddress, String userMetro, String userPhone) {
-
         setFirstName(userFirstName);
         setSecondName(userSecondName);
         setAddress(userAddress);
         selectMetro(userMetro);
         setPhone(userPhone);
-
     }
-
-
 }
 
 
